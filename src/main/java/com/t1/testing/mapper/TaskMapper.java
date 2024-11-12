@@ -9,9 +9,9 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface TaskMapper {
 
-    public abstract Task taskCreateDtoToTask(TaskCreateDto dto);
+    Task taskCreateDtoToTask(TaskCreateDto dto);
 
-    public abstract Task taskUpdateDtoToTask(TaskUpdateDto dto);
+    Task taskUpdateDtoToTask(TaskUpdateDto dto);
 
-    public abstract TaskDto taskToDto(Task task);
+    TaskDto taskToDto(Task task);
 }
