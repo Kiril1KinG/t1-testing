@@ -1,4 +1,4 @@
-package com.t1.testing.service.implementation;
+package com.t1.testing.service;
 
 import com.t1.testing.entity.Task;
 import com.t1.testing.entity.TaskStatus;
