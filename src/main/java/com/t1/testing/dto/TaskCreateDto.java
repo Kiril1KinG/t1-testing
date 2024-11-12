@@ -1,16 +1,12 @@
 package com.t1.testing.dto;
 
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import jakarta.validation.constraints.Size;
 
-@RequiredArgsConstructor
-@Getter
 public record TaskCreateDto(
 
     @NotEmpty
-    @Max(255)
+    @Size(min = 1, max = 255)
     String title,
 
     @NotEmpty
