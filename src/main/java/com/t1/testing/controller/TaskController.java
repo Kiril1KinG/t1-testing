@@ -6,8 +6,10 @@ import com.t1.testing.dto.TaskUpdateDto;
 import com.t1.testing.mapper.TaskMapper;
 import com.t1.testing.service.sample.TaskService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +24,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/task")
+@RequestMapping("/tasks")
 @RequiredArgsConstructor
+@Validated
 public class TaskController {
 
     private final TaskMapper taskMapper;
@@ -45,20 +48,20 @@ public class TaskController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public TaskDto getTaskById(@PathVariable Long id) {
+    public TaskDto getTaskById(@PathVariable @Min(1L) Long id) {
         return taskMapper.taskToDto(taskService.getTaskById(id));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public TaskDto updateTaskById(@PathVariable Long id,
+    public TaskDto updateTaskById(@PathVariable @Min(1L) Long id,
                                   @Valid @RequestBody TaskUpdateDto dto) {
         return taskMapper.taskToDto(taskService.updateTaskById(id, taskMapper.taskUpdateDtoToTask(dto)));
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteTaskById(@PathVariable Long id) {
+    public void deleteTaskById(@PathVariable @Min(1L) Long id) {
         taskService.deleteTaskById(id);
     }
 
